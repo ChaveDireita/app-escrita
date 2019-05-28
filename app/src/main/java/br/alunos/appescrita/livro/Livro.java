@@ -27,4 +27,10 @@ public class Livro
         this.titulo = titulo;
         this.capitulos = new ArrayList<Capitulo>();
     }
+
+    public int adicionarCapitulo (String titulo)
+    {
+        capitulos.add(new Capitulo (titulo));
+        return capitulos.size() - 1;
+    };
 }
