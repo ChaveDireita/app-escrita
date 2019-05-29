@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/TextViewPadrao</item>
     </style>
 
+    <style name="TextViewPadrao" parent="android:Widget.TextView">
+        <item name="android:typeface">monospace</item>
+        <item name="android:color">@color/colorAccent</item>
+    </style>
 </resources>
