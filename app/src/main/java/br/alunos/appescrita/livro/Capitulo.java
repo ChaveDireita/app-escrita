@@ -1,6 +1,8 @@
 package br.alunos.appescrita.livro;
 
-public class Capitulo
+import java.io.Serializable;
+
+public class Capitulo implements Serializable
 {
     private String titulo;
     private String texto;
@@ -28,5 +30,11 @@ public class Capitulo
     public Capitulo(String titulo)
     {
         this.titulo = titulo;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return this.titulo;
     }
 }

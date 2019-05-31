@@ -1,8 +1,9 @@
 package br.alunos.appescrita.livro;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Livro
+public class Livro implements Serializable
 {
     private String titulo;
     private ArrayList<Capitulo> capitulos;
@@ -32,5 +33,21 @@ public class Livro
     {
         capitulos.add(new Capitulo (titulo));
         return capitulos.size() - 1;
-    };
+    }
+
+    public void removerCapitulo (int capitulo) throws ArrayIndexOutOfBoundsException
+    {
+        capitulos.remove(capitulo);
+    }
+
+    public ArrayList<Capitulo> getCapitulos()
+    {
+        return capitulos;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return this.titulo;
+    }
 }
