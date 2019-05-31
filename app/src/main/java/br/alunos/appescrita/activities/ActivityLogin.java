@@ -14,6 +14,9 @@ import br.alunos.appescrita.R;
 public class ActivityLogin extends AppCompatActivity
 {
 
+    EditText editTextLogin;
+    EditText editTextSenha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -21,6 +24,8 @@ public class ActivityLogin extends AppCompatActivity
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+
+
 
         EditText editText = findViewById(R.id.campo_senha);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
@@ -30,8 +35,8 @@ public class ActivityLogin extends AppCompatActivity
             {
                 if (actionId == EditorInfo.IME_ACTION_DONE)
                 {
-                    Log.d("Debug", "oeal");
-                    //iniciarActivity();
+                    //Log.d("Debug", "oeal");
+                    iniciarActivity(ActivityListaCapitulo.class);
                     return true;
                 }
                 return false;

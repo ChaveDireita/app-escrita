@@ -4,4 +4,6 @@
     <string name="senha">Senha</string>
     <string name="cadastro">Cadastre-se</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="title_activity_lista_capitulo">ActivityListaCapitulo</string>
+    <string name="title_icone_app_bar"></string>
 </resources>
