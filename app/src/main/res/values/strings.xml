@@ -2,8 +2,22 @@
     <string name="app_name">App Escrita</string>
     <string name="login">Usuário</string>
     <string name="senha">Senha</string>
-    <string name="cadastro">Cadastre-se</string>
-    <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="cadastro"><u>Cadastre-se</u>></string>
+    <string name="esqueci_senha"><u>Esqueci minha senha</u></string>
     <string name="title_activity_lista_capitulo">ActivityListaCapitulo</string>
     <string name="title_icone_app_bar"></string>
+    <string name="title_activity_editar_capitulo">ActivityEditarCapitulo</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="sumario">Sumário</string>
+    <string name="snackbar_insira_usuario">Insira um nome de usuário</string>
+    <string name="snackbar_insira_senha">Insira uma senha</string>
+    <string name="snackbar_usuario_inexistente">Usuário inexistente</string>
+    <string name="snackbar_senha_incorreta">Senha incorreta</string>
+    <string name="snackbar_usuario_cadastrado">Este nome de usuário já está cadastrado</string>
+    <string name="snackbar_bem_sucedido">Cadastro bem sucedido</string>
 </resources>
