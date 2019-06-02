@@ -29,7 +29,9 @@ import br.alunos.appescrita.util.AcessaArquivos;
 
 public class ActivityListaCapitulo extends AppCompatActivity implements AcessaArquivos
 {
-    private String livroTitulo;
+    private String livroTitulo,
+                   usuario,
+                   caminhoArquivo;
     private Livro livro;
     private ArrayList<Capitulo> capitulos;
     private ArrayAdapter<Capitulo> capitulosArrayAdapter;
@@ -44,10 +46,11 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
         setSupportActionBar(toolbar);
 
         livroTitulo = getIntent().getStringExtra("livro");
-
+        usuario = getIntent().getStringExtra("usuario");
+        caminhoArquivo = usuario + "-" + livroTitulo;
         try
         {
-            livro = (Livro) abrirArquivo(livroTitulo);
+            livro = (Livro) abrirArquivo(caminhoArquivo);
         } catch (IOException | ClassNotFoundException e)
         {
             livro = new Livro(livroTitulo);
@@ -65,6 +68,7 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
             {
                 Intent intent = new Intent(ActivityListaCapitulo.this, ActivityEditarCapitulo.class);
                 intent.putExtra("livro", livroTitulo);
+                intent.putExtra("usuario", usuario);
                 intent.putExtra("itemSelecionado", position);
                 startActivity(intent);
             }
@@ -97,7 +101,7 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
     {
         try
         {
-            gravarArquivo(livroTitulo, livro);
+            gravarArquivo(caminhoArquivo, livro);
         } catch (IOException e) {}
         super.onBackPressed();
     }
@@ -107,7 +111,7 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
     {
         try
         {
-            gravarArquivo(livroTitulo, livro);
+            gravarArquivo(caminhoArquivo, livro);
         } catch (IOException e) {}
         super.onDestroy();
     }

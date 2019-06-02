@@ -2,7 +2,6 @@ package br.alunos.appescrita.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,15 +28,15 @@ import br.alunos.appescrita.util.AcessaArquivos;
 
 public class ActivityEditarCapitulo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AcessaArquivos
 {
-    private String livroTitulo;
+    private String livroTitulo,
+                   usuario,
+                   caminhoArquivo;
     private Livro livro;
     private ArrayList<Capitulo> capitulos;
     private Capitulo capitulo;
-    private ArrayAdapter<Capitulo> capitulosArrayAdapter;
     private int itemSelecionado;
     private DrawerLayout drawer;
     private EditText editTextCorpoCapitulo;
-    private View viewLivroTitulo;
     private TextView textViewLivroTitulo;
 
     @Override
@@ -63,20 +61,21 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
         editTextCorpoCapitulo = findViewById(R.id.edit_text_corpo_capitulo);
 
         livroTitulo = getIntent().getStringExtra("livro");
+        usuario = getIntent().getStringExtra("usuario");
+        caminhoArquivo = usuario + "-" + livroTitulo;
+
         try
         {
-            livro = (Livro) abrirArquivo(livroTitulo);
+            livro = (Livro) abrirArquivo(caminhoArquivo);
         } catch (IOException | ClassNotFoundException e) {}
 
-        textViewLivroTitulo = navigationView.getHeaderView(0).findViewById(R.id.text_view_titulo_livro_drawer);
+        textViewLivroTitulo = navigationView.getHeaderView(0).findViewById(R.id.drawer_titulo_livro);
         textViewLivroTitulo.setText(livro.getTitulo());
 
         itemSelecionado = getIntent().getIntExtra("itemSelecionado", 0);
 
         capitulos = livro.getCapitulos();
         capitulo = capitulos.get(itemSelecionado);
-
-        capitulosArrayAdapter = new ArrayAdapter<Capitulo>(this, R.layout.layout_lista, capitulos);
 
         editTextCorpoCapitulo.setText(capitulo.getTexto());
 
@@ -85,6 +84,8 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
             int indice = capitulos.indexOf(c);
             menu.add(R.id.editar_capitulo_lista_drawer, indice, indice, c.toString());
         }
+
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_nome_usuario)).setText(livro.getTitulo());
     }
 
     @Override
@@ -96,7 +97,7 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
         {
             try
             {
-                gravarArquivo(livroTitulo, livro);
+                gravarArquivo(caminhoArquivo, livro);
             } catch (IOException e) {}
             super.onBackPressed();
         }
@@ -114,7 +115,7 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
     {
         try
         {
-            gravarArquivo(livroTitulo, livro);
+            gravarArquivo(caminhoArquivo, livro);
         } catch (IOException e) {}
         super.onDestroy();
     }

@@ -95,6 +95,7 @@ public class ActivityListaLivro extends AppCompatActivity
                 } catch (IOException e) {}
                 Intent intent = new Intent(ActivityListaLivro.this, ActivityListaCapitulo.class);
                 intent.putExtra("livro", biblioteca.get(posicao));
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
             }
         });
