@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import br.alunos.appescrita.R;
 import br.alunos.appescrita.dialogfragments.DialogFragmentCriarLivro;
+import br.alunos.appescrita.dialogfragments.DialogFragmentDeletarLivro;
 import br.alunos.appescrita.util.AcessaArquivos;
 
 @SuppressWarnings("unchecked")
@@ -41,6 +42,7 @@ public class ActivityListaLivro extends AppCompatActivity
     private ArrayAdapter<String> bibliotecaArrayAdapter;
     private DrawerLayout drawer;
     private String usuario;
+    private String livroDeletar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,17 @@ public class ActivityListaLivro extends AppCompatActivity
                 intent.putExtra("livro", biblioteca.get(posicao));
                 intent.putExtra("usuario", usuario);
                 startActivity(intent);
+            }
+        });
+        listViewLivros.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                livroDeletar = biblioteca.get(position);
+                DialogFragmentDeletarLivro dialogFragmentDeletarLivro = new DialogFragmentDeletarLivro();
+                dialogFragmentDeletarLivro.show(getSupportFragmentManager(), null);
+                return true;
             }
         });
     }
@@ -201,5 +214,11 @@ public class ActivityListaLivro extends AppCompatActivity
         deleteFile(arquivo);
     }
 
+    public void deletarLivro ()
+    {
+        deletarArquivo(usuario + "-" + livroDeletar);
+        biblioteca.remove(livroDeletar);
+        bibliotecaArrayAdapter.notifyDataSetChanged();
+    }
 
 }

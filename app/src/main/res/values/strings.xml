@@ -2,10 +2,11 @@
     <string name="app_name">App Escrita</string>
     <string name="login">Usuário</string>
     <string name="senha">Senha</string>
-    <string name="cadastro"><u>Cadastre-se</u>></string>
+    <string name="cadastro"><u>Cadastre-se</u></string>
     <string name="esqueci_senha"><u>Esqueci minha senha</u></string>
     <string name="title_activity_lista_capitulo">ActivityListaCapitulo</string>
     <string name="title_icone_app_bar"></string>
+    <string name="title_activity_lista_livro">Livros</string>
     <string name="title_activity_editar_capitulo">ActivityEditarCapitulo</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -20,13 +21,18 @@
     <string name="snackbar_usuario_cadastrado">Este nome de usuário já está cadastrado</string>
     <string name="snackbar_bem_sucedido">Cadastro bem sucedido</string>
     <string name="snackbar_falhou_salvar">Erro ao salvar as alterações</string>
-    <string name="title_activity_lista_livro">ActivityListaLivro</string>
     <string name="drawer_configuracoes">Configurações</string>
     <string name="drawer_avalie">Avalie-nos</string>
     <string name="drawer_sair">Sair</string>
     <string name="dialog_criar_livro_titulo">Insira o título do livro</string>
     <string name="dialog_botao_criar">Criar</string>
     <string name="dialog_botao_cancelar">Cancelar</string>
+    <string name="dialog_botao_excluir">Cancelar</string>
+    <string name="dialog_deletar_livro">Deseja deletar este livro?</string>
     <string name="context_menu_deletar">Deletar</string>
     <string name="context_menu_renomear">Renomear</string>
+    <string name="adicionar_capitulo_insira_titulo">Insira o título do capítulo aqui</string>
+    <string name="adicionar_capitulo_insira_texto">Insira o texto do capítulo aqui</string>
+    <string name="adicionar_capitulo_insira_numero">Insira o texto do capítulo aqui</string>
+    <string name="numero_abrv">N°:</string>
 </resources>

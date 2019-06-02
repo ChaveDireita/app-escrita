@@ -69,6 +69,8 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
             livro = (Livro) abrirArquivo(caminhoArquivo);
         } catch (IOException | ClassNotFoundException e) {}
 
+
+
         textViewLivroTitulo = navigationView.getHeaderView(0).findViewById(R.id.drawer_titulo_livro);
         textViewLivroTitulo.setText(livro.getTitulo());
 
@@ -85,7 +87,9 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
             menu.add(R.id.editar_capitulo_lista_drawer, indice, indice, c.toString());
         }
 
-        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_nome_usuario)).setText(livro.getTitulo());
+        getSupportActionBar().setTitle(livroTitulo);
+
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_titulo_livro)).setText(livro.getTitulo());
     }
 
     @Override

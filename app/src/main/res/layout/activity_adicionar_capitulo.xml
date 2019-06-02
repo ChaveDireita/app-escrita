@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activities.AdicionarCapitulo"
+    android:background="@color/fundoSolido">
+
+    <EditText
+        android:id="@+id/edit_text_capitulo_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:layout_weight="1"
+        android:inputType="text"
+        android:hint="@string/adicionar_capitulo_insira_titulo"
+        tools:ignore="LabelFor,MissingConstraints"
+        style="@style/AppTheme"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Nº:"
+            style="@style/AppTheme"
+            android:textSize="24sp"/>
+        <EditText
+            android:id="@+id/edit_text_capitulo_numero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:layout_weight="10"
+            android:inputType="number"
+            android:hint="@string/adicionar_capitulo_insira_numero"
+            style="@style/AppTheme"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_text_corpo_capitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:shadowColor="@android:color/transparent"
+        android:layout_weight="20"
+        android:gravity="top|left"
+        android:background="@color/fundoSolido"
+        android:inputType="textMultiLine"
+        android:hint="@string/adicionar_capitulo_insira_texto"
+        style="@style/AppTheme"/>
+
+
+
+</LinearLayout>

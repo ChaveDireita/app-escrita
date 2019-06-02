@@ -31,13 +31,6 @@ public class DialogFragmentCriarLivro extends DialogFragment
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        TextView title =  new TextView(listaLivro);
-        title.setText("Due Alert");
-        title.setGravity(Gravity.CENTER);
-        title.setTextSize(20);
-        title.setBackgroundColor(Color.GRAY);
-        title.setTextColor(Color.WHITE);
-
         builder.setView((view = inflater.inflate(R.layout.fragment_dialog_criar_livro, null)))
         .setTitle(R.string.dialog_criar_livro_titulo)
         .setPositiveButton(R.string.dialog_botao_criar, new DialogInterface.OnClickListener()

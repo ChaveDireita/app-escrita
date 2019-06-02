@@ -3,6 +3,7 @@ package br.alunos.appescrita.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +22,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import br.alunos.appescrita.dialogfragments.DialogFragmentDeletarCapitulo;
+import br.alunos.appescrita.dialogfragments.DialogFragmentDeletarLivro;
 import br.alunos.appescrita.livro.Capitulo;
 import br.alunos.appescrita.livro.Livro;
 import br.alunos.appescrita.R;
 import br.alunos.appescrita.util.AcessaArquivos;
+import br.alunos.appescrita.util.ConstantesComuns;
 
 
 public class ActivityListaCapitulo extends AppCompatActivity implements AcessaArquivos
@@ -36,6 +40,7 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
     private ArrayList<Capitulo> capitulos;
     private ArrayAdapter<Capitulo> capitulosArrayAdapter;
     private ListView listViewCapitulos;
+    int capituloDeletar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +60,8 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
         {
             livro = new Livro(livroTitulo);
         }
+        if (livro == null)
+            livro = new Livro(livroTitulo);
 
         capitulos = livro.getCapitulos();
         capitulosArrayAdapter = new ArrayAdapter<Capitulo>(this, R.layout.layout_lista, capitulos);
@@ -74,7 +81,19 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
             }
         });
 
-        toolbar.setTitle(livro.getTitulo());
+        listViewCapitulos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                capituloDeletar = position;
+                DialogFragmentDeletarCapitulo dialogFragmentDeletarCapitulo = new DialogFragmentDeletarCapitulo();
+                dialogFragmentDeletarCapitulo.show(getSupportFragmentManager(), null);
+                return true;
+            }
+        });
+
+        getSupportActionBar().setTitle(livro.getTitulo());
 
         FloatingActionButton fab = findViewById(R.id.fab_adicionar_capitulo);
         fab.setOnClickListener(new View.OnClickListener()
@@ -82,7 +101,11 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Não faz nada por equanto", Snackbar.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ActivityListaCapitulo.this, AdicionarCapitulo.class);
+                intent.putExtra("livro", livroTitulo);
+                intent.putExtra("usuario", usuario);
+                startActivityForResult(intent, ConstantesComuns.REQUEST_OPCAO_SELECIONADA);
             }
         });
 
@@ -146,4 +169,34 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
     {
         deleteFile(arquivo);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try
+        {
+            livro = (Livro) abrirArquivo(caminhoArquivo);
+        } catch (IOException | ClassNotFoundException e)
+        {
+            livro = new Livro(livroTitulo);
+        }
+
+        capitulos = livro.getCapitulos();
+        capitulosArrayAdapter = capitulosArrayAdapter = new ArrayAdapter<Capitulo>(this, R.layout.layout_lista, capitulos);
+        listViewCapitulos.setAdapter(capitulosArrayAdapter);
+        capitulosArrayAdapter.notifyDataSetChanged();
+    }
+
+    public void deletarCapitulo ()
+    {
+        capitulos.remove(capituloDeletar);
+        try
+        {
+            gravarArquivo(caminhoArquivo, livro);
+        } catch (IOException e) {}
+        capitulosArrayAdapter.notifyDataSetChanged();
+    }
+
 }
