@@ -5,16 +5,14 @@ import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.concurrent.CompletionService;
-
 import br.alunos.appescrita.R;
+import br.alunos.appescrita.util.ConstantesComuns;
 
 public class ActivityLogin extends AppCompatActivity
 {
@@ -33,6 +31,11 @@ public class ActivityLogin extends AppCompatActivity
 
         editTextLogin = findViewById(R.id.campo_usuario);
         editTextSenha = findViewById(R.id.campo_senha);
+        try
+        {
+            String usuario = getIntent().getStringExtra("usuario");
+            editTextLogin.setText(usuario);
+        } catch (NullPointerException e) {}
 
         textViewCadastrar = findViewById(R.id.texto_cadastro);
         textViewEsqueciSenha = findViewById(R.id.texto_esqueci);
@@ -49,7 +52,7 @@ public class ActivityLogin extends AppCompatActivity
                     switch (logar(usuario, senha))
                     {
                         case ConstantesComuns.LOGIN_BEM_SUCEDIDO:
-                            Intent intent = new Intent(ActivityLogin.this, ActivityEditarCapitulo.class);
+                            Intent intent = new Intent(ActivityLogin.this, ActivityListaLivro.class);
                             intent.putExtra("usuario", usuario);
                             startActivity(intent);
                             finish();

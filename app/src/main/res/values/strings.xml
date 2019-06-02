@@ -10,7 +10,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="sumario">Sumário</string>
@@ -20,4 +19,14 @@
     <string name="snackbar_senha_incorreta">Senha incorreta</string>
     <string name="snackbar_usuario_cadastrado">Este nome de usuário já está cadastrado</string>
     <string name="snackbar_bem_sucedido">Cadastro bem sucedido</string>
+    <string name="snackbar_falhou_salvar">Erro ao salvar as alterações</string>
+    <string name="title_activity_lista_livro">ActivityListaLivro</string>
+    <string name="drawer_configuracoes">Configurações</string>
+    <string name="drawer_avalie">Avalie-nos</string>
+    <string name="drawer_sair">Sair</string>
+    <string name="dialog_criar_livro_titulo">Insira o título do livro</string>
+    <string name="dialog_botao_criar">Criar</string>
+    <string name="dialog_botao_cancelar">Cancelar</string>
+    <string name="context_menu_deletar">Deletar</string>
+    <string name="context_menu_renomear">Renomear</string>
 </resources>

@@ -1,4 +1,4 @@
-package br.alunos.appescrita.activities;
+package br.alunos.appescrita.util;
 
 public interface ConstantesComuns
 {

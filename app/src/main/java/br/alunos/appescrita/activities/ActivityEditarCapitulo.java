@@ -1,6 +1,8 @@
 package br.alunos.appescrita.activities;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,15 +16,21 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import br.alunos.appescrita.R;
 import br.alunos.appescrita.livro.Capitulo;
 import br.alunos.appescrita.livro.Livro;
+import br.alunos.appescrita.util.AcessaArquivos;
 
-public class ActivityEditarCapitulo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class ActivityEditarCapitulo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AcessaArquivos
 {
-
+    private String livroTitulo;
     private Livro livro;
     private ArrayList<Capitulo> capitulos;
     private Capitulo capitulo;
@@ -34,7 +42,8 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
     private TextView textViewLivroTitulo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_capitulo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,18 +57,23 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        textViewLivroTitulo = navigationView.getHeaderView(0).findViewById(R.id.text_view_titulo_livro_drawer);
-        textViewLivroTitulo.setText("Titulo do Livro");
 
         Menu menu = navigationView.getMenu();
 
         editTextCorpoCapitulo = findViewById(R.id.edit_text_corpo_capitulo);
 
-        livro = (Livro) getIntent().getSerializableExtra("livro");
+        livroTitulo = getIntent().getStringExtra("livro");
+        try
+        {
+            livro = (Livro) abrirArquivo(livroTitulo);
+        } catch (IOException | ClassNotFoundException e) {}
+
+        textViewLivroTitulo = navigationView.getHeaderView(0).findViewById(R.id.text_view_titulo_livro_drawer);
+        textViewLivroTitulo.setText(livro.getTitulo());
+
         itemSelecionado = getIntent().getIntExtra("itemSelecionado", 0);
+
         capitulos = livro.getCapitulos();
-
-
         capitulo = capitulos.get(itemSelecionado);
 
         capitulosArrayAdapter = new ArrayAdapter<Capitulo>(this, R.layout.layout_lista, capitulos);
@@ -80,6 +94,10 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
             drawer.closeDrawer(GravityCompat.START);
         } else
         {
+            try
+            {
+                gravarArquivo(livroTitulo, livro);
+            } catch (IOException e) {}
             super.onBackPressed();
         }
     }
@@ -89,6 +107,16 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
     {
         getMenuInflater().inflate(R.menu.icone_app_bar, menu);
         return true;
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        try
+        {
+            gravarArquivo(livroTitulo, livro);
+        } catch (IOException e) {}
+        super.onDestroy();
     }
 
     @Override
@@ -104,5 +132,34 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
         return true;
     }
 
+    @Override
+    public Object abrirArquivo(String arquivo) throws IOException, ClassNotFoundException
+    {
+        FileInputStream entradaArquivo = openFileInput(arquivo);
+        ObjectInputStream entradaObjeto = new ObjectInputStream(entradaArquivo);
 
+        Object o = entradaObjeto.readObject();
+
+        entradaObjeto.close();
+        entradaArquivo.close();
+        return o;
+    }
+
+    @Override
+    public <T> void gravarArquivo(String arquivo, T objeto) throws IOException
+    {
+        FileOutputStream saidaArquivo = openFileOutput(arquivo, Context.MODE_PRIVATE);
+        ObjectOutputStream saidaObjeto = new ObjectOutputStream(saidaArquivo);
+
+        saidaObjeto.writeObject(objeto);
+
+        saidaObjeto.close();
+        saidaArquivo.close();
+    }
+
+    @Override
+    public void deletarArquivo(String arquivo) throws IOException
+    {
+        deleteFile(arquivo);
+    }
 }
