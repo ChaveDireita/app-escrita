@@ -3,7 +3,7 @@
     <color name="colorPrimary">#8E8E8E</color>
     <color name="colorPrimaryDark">#787878</color>
     <color name="colorAccent">#191919</color>
-    <color name="loginLink">#10108B</color>
+    <color name="loginLink">#2727FF</color>
     <color name="fundoSolido">#FFEFE5</color>
     <color name="branco">#FFFFFF</color>
 </resources>
