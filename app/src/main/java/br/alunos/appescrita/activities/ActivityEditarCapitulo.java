@@ -87,7 +87,7 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
             menu.add(R.id.editar_capitulo_lista_drawer, indice, indice, c.toString());
         }
 
-        getSupportActionBar().setTitle(livroTitulo);
+        getSupportActionBar().setTitle(capitulo.getTitulo());
 
         ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_titulo_livro)).setText(livro.getTitulo());
     }
@@ -132,6 +132,7 @@ public class ActivityEditarCapitulo extends AppCompatActivity implements Navigat
         capitulo.setTexto(editTextCorpoCapitulo.getText().toString());
         capitulo = capitulos.get(itemSelecionado);
         editTextCorpoCapitulo.setText(capitulo.getTexto());
+        getSupportActionBar().setTitle(capitulo.getTitulo());
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
