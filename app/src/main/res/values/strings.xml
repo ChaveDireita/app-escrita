@@ -2,6 +2,7 @@
     <string name="app_name">NolascoPad</string>
     <string name="login">Usuário</string>
     <string name="senha">Senha</string>
+    <string name="logar"><u>Login</u></string>
     <string name="cadastro"><u>Cadastre-se</u></string>
     <string name="esqueci_senha"><u>Esqueci minha senha</u></string>
     <string name="title_activity_lista_capitulo">ActivityListaCapitulo</string>
