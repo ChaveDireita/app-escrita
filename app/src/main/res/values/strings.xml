@@ -35,4 +35,35 @@
     <string name="adicionar_capitulo_insira_texto">Insira o texto do capítulo aqui</string>
     <string name="adicionar_capitulo_insira_numero">Insira o texto do capítulo aqui</string>
     <string name="numero_abrv">N°:</string>
+
+    <string name="title_activity_user_config">UserConfig</string>
+    <string name="user_name">Carl</string>
+    <string name="user_secname">Jhonson</string>
+    <string name="name">Nome completo do usuário:</string>
+    <string name="sobrenome">Sobrenome do usuário:</string>
+    <string name="email">Email do usuário:</string>
+    <string name="user_email">CJhonson95@grooves.com</string>
+    <string name="infoabouttheme">A mudança de tema só poderá ser realizada futuramente</string>
+    <string name="theme">Tema:</string>
+    <string name="font">Fonte:</string>
+    <string name="config">_     CONFIGURAÇÕES</string>
+    <string name="edituser">Editar usuário</string>
+    <string name="returnuser">Voltar</string>
+    <string name="savechanges">Salvar configurações</string>
+    <string name="dischanges">Descartar configurações</string>
+    <string name="infoaboutfont">A mudança de fonte só poderá ser realizada futuramente</string>
+    <string name="userconfigname">_      CONFIGURAÇÕES DE USUÁRIO</string>
+    <string-array name="themes">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="fonts">
+        <item>Arial</item>
+        <item>Calibri</item>
+        <item>Comic Sans</item>
+        <item>Consolas</item>
+        <item>Roboto</item>
+        <item>Times New Roman</item>
+        <item>Verdana</item>
+    </string-array>
 </resources>

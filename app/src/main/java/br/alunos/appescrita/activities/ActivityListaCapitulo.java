@@ -73,6 +73,10 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                try
+                {
+                    gravarArquivo(caminhoArquivo, livro);
+                } catch (IOException e) {}
                 Intent intent = new Intent(ActivityListaCapitulo.this, ActivityEditarCapitulo.class);
                 intent.putExtra("livro", livroTitulo);
                 intent.putExtra("usuario", usuario);
@@ -101,7 +105,10 @@ public class ActivityListaCapitulo extends AppCompatActivity implements AcessaAr
             @Override
             public void onClick(View view)
             {
-
+                try
+                {
+                    gravarArquivo(caminhoArquivo, livro);
+                } catch (IOException e) {}
                 Intent intent = new Intent(ActivityListaCapitulo.this, AdicionarCapitulo.class);
                 intent.putExtra("livro", livroTitulo);
                 intent.putExtra("usuario", usuario);

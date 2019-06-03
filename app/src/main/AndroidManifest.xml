@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="br.alunos.appescrita.activities.UserConfig"
+                  android:label="@string/drawer_configuracoes"/>
+        <activity android:name="br.alunos.appescrita.activities.Configs"
+                  android:label="@string/drawer_configuracoes"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activities.AdicionarCapitulo"></activity>
         <activity
             android:name=".activities.ActivityListaLivro"

@@ -148,14 +148,19 @@ public class ActivityListaLivro extends AppCompatActivity
     {
         int id = item.getItemId();
 
+        Intent intent;
+
         switch (id)
         {
             case R.id.drawer_opcao_configuracoes:
+                intent = new Intent(this, Configs.class);
+                intent.putExtra("usuario", usuario);
+                startActivity(intent);
                 break;
             case R.id.drawer_opcao_avalie:
                 break;
             case R.id.drawer_opcao_sair:
-                Intent intent = new Intent(this, ActivityLogin.class);
+                intent = new Intent(this, ActivityLogin.class);
                 intent.putExtra("usuario", usuario);
                 startActivity(intent);
                 finish();
